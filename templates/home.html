@@ -1,0 +1,59 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradise Hotel</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<style>
+    .hero{
+        background: url('/static/home.jpg') no-repeat center center/cover;
+    }
+
+</style>
+<body>
+    <header>
+        <h1>Paradise Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                
+                
+                <li><a href="login.html">login</a></li>
+                
+                <li><a href="booking ">Book Now</a></li>
+                <li><a href="signup.html">signup</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="hero">
+            <h2>Welcome to Paradise Hotel</h2>
+            <p>Experience the luxury and comfort</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Paradise Hotel is a luxury hotel that offers the best services and amenities. We are located in the heart of the city, providing easy access to all major attractions. Our hotel features comfortable rooms, an exquisite dining experience, and top-notch customer service.</p>
+    </section>
+
+    <section id="gallery" class="image-gallery">
+        <h2>Gallery</h2>
+        <img src="static/home.jpg" alt="Hotel Exterior">
+        <img src="static/room.jpg" alt="Hotel Lobby">
+        <img src="static/swim.jpeg" alt="Hotel Room">
+    </section>
+
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@paradisehotel.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Paradise Road, Dream City</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        a{
+            font-size:20px;
+            background-color:whitesmokes;
+        }
+        .welcome-msg{
+            font-size:42px;
+            font-weight:600;
+            text-align:center;
+            padding:18px 0px 6px;
+        }
+        .ema{text-align:center;
+            padding-bottom:18px;
+
+        }
+        .ouside-box{
+            display:flex;
+        
+        }
+        .inside-box{
+        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
+        margin: 0px 25px 0px 25px;
+        }
+        #ie{
+            margin:15px;
+
+        }
+        .but{
+            
+            border-radius: 5px;
+            
+            margin: 10px;
+        }
+        .edit{
+            text-decoration: none;
+            font-size: 15px;
+            cursor: pointer;
+            margin: 4px;
+            
+            color:black;
+        }
+        .oop{
+            border: solid 1px #222;
+            padding:6px 2px 0px 0px;
+
+
+        }
+      
+
+            
+            
+
+
+       
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Paradise Hotel</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                
+                <li><a href="index.html">Review</a></li>
+                <li><a href="{% url 'booking' %}">Book Now</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+        
+    </header>
+    <h1 class="welcome-msg">Welcome, {{ user.username }}!</h1>
+    <p class="ema">Email: {{ user.email }}</p>
+    {%for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show w-50 m-auto mt-2" role="alert">
+        <strong>Message</strong>{{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="ouside-box">
+      {% for x in s  %}
+      
+      <div class="inside-box">
+        Guestname : {{x.name}}<br>
+        Email : {{x.email}}<br>
+        no_of_rooms : {{x.no_of_rooms}}<br>
+        Room type : {{x.room_type}}<br>
+        Check_in_date : {{x.check_in}}<br>
+        Check_out_date : {{x.check_out}}<br>
+        Room No:{{x.number}}<br>
+        
+       <button type="submit" class="but"> <a href="edit{{x.id}} "class="edit">Edit</a></button>
+       <button type="submit" class="but"> <a href="delete{{x.id}} "class="edit">Cancel booking</a></button>
+
+      
+    </div>
+    {% endfor %}
+      
+      <h4>Booked room<h4><br>
+      {% for y in p %}
+       
+     <strong class="oop"> {{y.number}}</strong>      
+
+      {% endfor %}
+      
+    
+    </div>
+
+    <section id="booking" class="booking-form">
+        
+        <h2>Book Your Stay</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="room-type">Room Type:</label>
+            <select id="room-type" name="room_type" required>
+                <option value="single">Single Room</option>
+                <option value="double">Double Room</option>
+                <option value="suite">Suite</option>
+            </select>
+
+            <label for="check-in">Check-in Date:</label>
+            <input type="date" id="check-in" name="check_in" required>
+
+            <label for="check-out">Check-out Date:</label>
+            <input type="date" id="check-out" name="check_out" required>
+
+            <label for="no-of-rooms">Number of Rooms:</label>
+            <input type="number" id="no-of-rooms" name="no_of_rooms" min="1" required>
+            <label for="number">Room number:</label>
+            <input type="text" id="number" name="number" required>
+
+            <h3>Prices</h3>
+            <ul>
+                <li>Single Room: $100 per night</li>
+                <li>Double Room: $150 per night</li>
+                <li>Suite: $250 per night</li>
+            </ul>
+
+            <button type="submit">Book Now</button>
+        </form>
+        <a href={% url 'logout' %}>logout</a>
+    </section>
+
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@paradisehotel.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Paradise Road, Dream City</p>
+    </footer>
+</body>
+</html>
